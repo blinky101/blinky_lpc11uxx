@@ -70,22 +70,21 @@ set(FLASH_FILE          ${PROJECT_BINARY_DIR}/flash.cfg)
 # CPM Modules
 #------------------------------------------------------------------------------
 
-# TODO rename all dependencies to <package>_<platform>[_core] format
-CPM_AddModule("11uxx_startup"
+CPM_AddModule("startup_lpc11uxx"
     GIT_REPOSITORY "https://github.com/JitterCompany/startup_lpc11uxx.git"
-    GIT_TAG "1.0")
+    GIT_TAG "1.1")
 
 CPM_AddModule("lpc_tools"
     GIT_REPOSITORY "https://github.com/JitterCompany/lpc_tools.git"
-    GIT_TAG "2.6.0")
+    GIT_TAG "2.6.1")
 
-CPM_AddModule("lpc_chip_11uxx"
-    GIT_REPOSITORY "https://github.com/JitterCompany/lpc_chip_11uxx.git"
-    GIT_TAG "1.0")
+CPM_AddModule("chip_lpc11uxx"
+    GIT_REPOSITORY "https://github.com/JitterCompany/chip_lpc11uxx.git"
+    GIT_TAG "1.1")
 
 CPM_AddModule("mcu_timing"
     GIT_REPOSITORY "https://github.com/JitterCompany/mcu_timing.git"
-    GIT_TAG "1.5.6")
+    GIT_TAG "1.5.7")
 
 CPM_AddModule("c_utils"
     GIT_REPOSITORY "https://github.com/JitterCompany/c_utils.git"
