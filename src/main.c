@@ -1,4 +1,5 @@
 #include "board.h"
+#include "board_GPIO_ID.h"
 
 #include <chip.h>
 #include <lpc_tools/boardconfig.h>
@@ -86,16 +87,13 @@ int main(void)
 
     delay_init();
 
-    // initialize led
-    GPIO led;
-    GPIO_HAL_init(&led, 0, 7);
-    GPIO_HAL_set(&led, LOW);
-
+    // get the GPIO with the led (see board.c)
+    const GPIO *led = board_get_GPIO(GPIO_ID_LED);
 
 	while(true)
 	{
         // LED toggle
-        GPIO_HAL_toggle(&led);
+        GPIO_HAL_toggle(led);
         delay_us(100*1000);
 	}
 	return 0;
