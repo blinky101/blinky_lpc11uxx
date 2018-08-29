@@ -1,0 +1,12 @@
+# === Local config === #
+# This is a separate config, used by the main CmakeLists.txt.
+# Its purpose is to allow easy adjustments of case-specific settings
+# without committing them to the code repository.
+# See CmakeLists.txt for the defaults
+
+# Compiler optimize level
+#set(OPTIMIZE s)
+
+# Where to find the Black Magic Probe device
+#set(BLACKMAGIC_DEV /dev/ttyBmpGdb)
+
