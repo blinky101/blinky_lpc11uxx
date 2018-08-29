@@ -1,0 +1,28 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "cortex-debug",
+            "request": "launch",
+            "servertype": "bmp",
+            "cwd": "${workspaceRoot}",
+            "executable": "./build/blinky_lpc11uxx",
+            "svdFile": "${workspaceRoot}/LPC11Uxx_v7.svd",
+            "name": "Debug (Black Magic Probe)",
+            "device": "LPC11U14",
+
+            // for MacOS: change to your specific black magic probe, see `bobbin info`
+            "BMPGDBSerialPort": "/dev/cu.usbmodem7AC67271", 
+
+            // for linux, use udev rule :
+            // `SUBSYSTEM=="tty", ATTRS{interface}=="Black Magic GDB Server", SYMLINK+="ttyBmpGdb"`
+            // "BMPGDBSerialPort": "/dev/ttyBmpGdb", 
+            
+            "targetId": 1,
+            "showDevDebugOutput": false,
+        }
+    ]
+}
