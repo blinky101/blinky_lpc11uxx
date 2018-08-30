@@ -1,2 +1,3 @@
 # LPC11uxx series
 
+The LPC11uxx microcontrollers are low end 32 bit cortex-m0 microcontrollers. 
