@@ -88,5 +88,5 @@ This should drop you in a gdb console, showing the code that is currently execut
 * step (step through the code line-by-line)
 * ... and many more, see the gdb documentation
 
-This can be very helpful to find bugs in your code, or to verify that the program is indeed running (in case your board does not have a LED to blink).
+This can be very helpful to find bugs in your code, or to verify that the program is indeed running (in case your board does not have an LED to blink).
 
