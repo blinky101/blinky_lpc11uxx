@@ -89,12 +89,12 @@ arm-none-eabi-gdb \
 -ex 'monitor swdp_scan' \
 -ex 'attach 1' \
 -ex 'set mem inaccessible-by-default off' \
+-ex 'set {int}0x40048000 = 2' \
 blinky.elf
 ```
 This should drop you in a gdb console, showing the code that is currently executing. Some helpful commands:
-* continue (continues running the program)
-* Ctrl-C (halts the program)
-* step (step through the code line-by-line)
+* continue (continues running the program: the LED blinks)
+* Ctrl-C (halts the program: the LED stops blinking)
 * ... and many more, see the gdb documentation
 
 This can be very helpful to find bugs in your code, or to verify that the program is indeed running (in case your board does not have an LED to blink).
