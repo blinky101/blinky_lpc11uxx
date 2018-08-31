@@ -2,3 +2,7 @@
 build/
 tags
 config.cmake
+*.d
+*.o
+*.elf
+*.bin
