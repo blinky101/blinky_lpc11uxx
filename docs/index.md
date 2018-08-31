@@ -68,6 +68,15 @@ arm-none-eabi-gdb -nx --batch \
 -ex 'kill' \
 blinky.elf
 ```
+The output will look similar to this:
+```
+Loading section .text, size 0x184 lma 0x0
+Start address 0xd4, load size 388
+Transfer rate: 3 KB/sec, 388 bytes/write.
+Section .text, range 0x0 -- 0x184: matched.
+Kill the program being debugged? (y or n) [answered Y; input not from terminal]
+
+```
 If all goes well, you now have succesfully uploaded your first program!
 You should now see a blinking LED (assuming your board has an LED attached to pin PI0_7).
 
