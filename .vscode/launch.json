@@ -9,9 +9,9 @@
             "request": "launch",
             "servertype": "bmp",
             "cwd": "${workspaceRoot}",
-            "executable": "./build/blinky_lpc11uxx",
+            "executable": "${workspaceRoot}/cpm/build/blinky_lpc11uxx",
             "svdFile": "${workspaceRoot}/LPC11Uxx_v7.svd",
-            "name": "Debug (Black Magic Probe)",
+            "name": "CPM (Black Magic Probe)",
             "device": "LPC11U14",
 
             // for MacOS: change to your specific black magic probe, see `bobbin info`
@@ -31,7 +31,27 @@
             "cwd": "${workspaceRoot}",
             "executable": "${workspaceRoot}/bare-metal/blinky.elf",
             "svdFile": "${workspaceRoot}/LPC11Uxx_v7.svd",
-            "name": "Debug Bare Metal (Black Magic Probe)",
+            "name": "Bare Metal (Black Magic Probe)",
+            "device": "LPC11U14",
+
+            // for MacOS: change to your specific black magic probe, see `bobbin info`
+            "BMPGDBSerialPort": "/dev/cu.usbmodem7AC67271",
+
+            // for linux, use udev rule :
+            // `SUBSYSTEM=="tty", ATTRS{interface}=="Black Magic GDB Server", SYMLINK+="ttyBmpGdb"`
+            // "BMPGDBSerialPort": "/dev/ttyBmpGdb",
+
+            "targetId": 1,
+            "showDevDebugOutput": false,
+        },
+        {
+            "type": "cortex-debug",
+            "request": "launch",
+            "servertype": "bmp",
+            "cwd": "${workspaceRoot}",
+            "executable": "${workspaceRoot}/bare-metal/blinky.elf",
+            "svdFile": "${workspaceRoot}/LPC11Uxx_v7.svd",
+            "name": "Basic (Black Magic Probe)",
             "device": "LPC11U14",
 
             // for MacOS: change to your specific black magic probe, see `bobbin info`
