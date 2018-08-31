@@ -1,5 +1,5 @@
 # LPC11uxx series
 
-The LPC11uxx microcontrollers are low end 32 bit cortex-m0 microcontrollers. 
+<img src="img/lpc11uxx.jpg" alt="LPC11uxx microcontroller chip" width="200">
 
-![LPC11uxx microcontroller chip](img/lpc11uxx.jpg)
+The LPC11uxx microcontrollers are low end 32 bit cortex-m0 microcontrollers.
