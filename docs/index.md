@@ -36,17 +36,29 @@ The Black Magic probe acts as a remote gdb target, so we can flash the firmware 
 
 Remark: you need to install the [Gnu Arm Embedded Toolchain](https://developer.arm.com/open-source/gnu-toolchain/gnu-rm/downloads). If the `arm-none-eabi-gdb` command is not available, you need to add the toolchain to your PATH. For example, add this line to ~/.bashrc (assuming linux):
 ```
-export PATH=$PATH:/foler/where/you/installed/the/toolchain/gcc-arm-none-eabi-7-2017-q4-major/bin/
+export PATH=$PATH:/folder/where/you/installed/the/toolchain/gcc-arm-none-eabi-7-2017-q4-major/bin/
 ```
 
 #### Connecting the Black Magic Probe
 
-Depending on your platform, a 'file' in /dev/ is created when you plugin the Black Magic Probe. On linux this is most probably something like `/dev/ttyACM0`, on a Mac it is something like `/dev/cu.usbmodem<serialnumber>`.
+Depending on your platform, a 'file' in /dev/ is created when you plugin the Black Magic Probe.
 
-The firmware can be flashed using this command, replacing /dev/BmpGdb with the correct file as explained above:
+The name of this file can change sometimes, but it is relatively easy to find out by plugging the Black Magic Probe in and out and observing the differences.
+
+* Linux: the file will be something like `/dev/ttyACM0`.
+  
+  Depending on the linux distribution, you may need permissions to use the debugger. On Ubuntu, this can be fixed by adding yourself to the `dialout` group:
+  ```
+  sudo adduser <your-username> dialout
+  ```
+  
+* Mac: the file will be formatted like `/dev/cu.usbmodem<serialnumber>`
+
+
+The firmware can be flashed using this command, replacing /dev/ttyACM0 with the correct file as explained above:
 ```
 arm-none-eabi-gdb -nx --batch \
--ex 'target extended-remote /dev/BmpGdb' \
+-ex 'target extended-remote /dev/ttyACM0' \
 -ex 'monitor swdp_scan' \
 -ex 'attach 1' \
 -ex 'load' \
