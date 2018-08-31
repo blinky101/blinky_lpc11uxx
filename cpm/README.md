@@ -30,7 +30,15 @@ Connect your debugger to the target board, and run the following command from th
 make flash
 ```
 
-If everything went right, the firmware should be running and blinking a LED.
+### Debugging via gdb
+
+This works similarly to flashing.
+Connect your debugger to the target board, and run the following command from the build dir (see build step above):
+```
+make debug
+```
+This should drop you into a gdb console.
+When exiting gdb (e.g. via ctrl-C), you may see some cmake errors/warnings. These can be safely ignored.
 
 
 ## FAQ
