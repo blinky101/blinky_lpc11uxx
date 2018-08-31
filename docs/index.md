@@ -69,7 +69,7 @@ arm-none-eabi-gdb -nx --batch \
 blinky.elf
 ```
 If all goes well, you now have succesfully uploaded your first program!
-Assuming your board has a LED on pin PI0_7, you should see that LED blinking.
+You should now see a blinking LED (assuming your board has an LED attached to pin PI0_7).
 
 ### Debugging
 
