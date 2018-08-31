@@ -84,7 +84,7 @@ You should now see a blinking LED (assuming your board has an LED attached to pi
 
 The Black Magic Probe is not just for flashing the firmware, you can also step through the code:
 ```
-arm-none-eabi-gdb -nx --batch \
+arm-none-eabi-gdb \
 -ex 'target extended-remote /dev/ttyACM0' \
 -ex 'monitor swdp_scan' \
 -ex 'attach 1' \
