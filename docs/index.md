@@ -19,7 +19,7 @@ The purpose of this guide is to document the steps required to get started on th
 
 ## Getting started: bare-metal
 
-This repository contains three different blinky projects. The bare-metal project has the least dependencies and is very easy to get up and running. The downside is that the source code is a bit cryptic, especially if you are not used to embedded c code.
+This repository contains three different blinky projects. The bare-metal project has the least dependencies and is the easiest to get up and running. The downside is that the source code is a bit hard to read, especially if you are not used to embedded c code.
 
 ### Compile the firmware
 ```
