@@ -68,4 +68,25 @@ arm-none-eabi-gdb -nx --batch \
 -ex 'kill' \
 blinky.elf
 ```
+If all goes well, you now have succesfully uploaded your first program!
+Assuming your board has a LED on pin PI0_7, you should see that LED blinking.
+
+### Debugging
+
+The Black Magic Probe is not just for flashing the firmware, you can also step through the code:
+```
+arm-none-eabi-gdb -nx --batch \
+-ex 'target extended-remote /dev/ttyACM0' \
+-ex 'monitor swdp_scan' \
+-ex 'attach 1' \
+-ex 'set mem inaccessible-by-default off' \
+blinky.elf
+```
+This should drop you in a gdb console, showing the code that is currently executing. Some helpful commands:
+* continue (continues running the program)
+* Ctrl-C (halts the program)
+* step (step through the code line-by-line)
+* ... and many more, see the gdb documentation
+
+This can be very helpful to find bugs in your code, or to verify that the program is indeed running (in case your board does not have a LED to blink).
 
