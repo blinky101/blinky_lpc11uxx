@@ -28,7 +28,7 @@ cd blinky_lpc11uxx/bare-metal
 make all
 ```
 
-Or in case you don't want to compile the project or it doesn't work for you, you can download the [pre-compiled binary](/bare-metal/blinky.bin) and [elf file](/bare-metal/blinky.elf) directly.
+Or in case you don't want to compile the project or it doesn't work for you, you can download the [pre-compiled binary](../bare-metal/blinky.bin) and [elf file](../bare-metal/blinky.elf) directly.
 
 ### Flash it using a Black Magic Probe
 
