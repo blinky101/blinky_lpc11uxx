@@ -14,7 +14,7 @@ blinky.elf: $(OBJ)
 
 .PHONY: clean
 clean:
-	-rm -rf *.o *.bin *.elf *.map -include *.d
+	-rm -rf *.o *.bin *.elf *.map *.d
 
 %.bin: %.elf
 	$(OBJCOPY) -O binary $< $@
