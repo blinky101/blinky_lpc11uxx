@@ -1,6 +1,5 @@
 
-// called when the chip resets
-void reset_vector(void)
+void blinky(void)
 {
 
     // configure PIO_7 pin function
@@ -46,7 +45,7 @@ struct {
 } interrupt_vector_table = {
 
     .stack = &_vStackTop,
-    .reset = reset_vector,
+    .reset = blinky,
     .checksum =  (unsigned int)&__valid_user_code_checksum,
 };
 

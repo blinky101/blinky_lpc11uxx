@@ -49,7 +49,7 @@ Remember, our goal, and our only goal is to blink the LED on pin 0_7. Toggeling 
 #### Pin multiplexing
 
 We will need information from the [manual (UM10462)](https://www.nxp.com/docs/en/user-guide/UM10462.pdf). In `Chapter 7 I/O Configuration` we can find the relevant information. More specifically section `7.4.1.8 PIO0_7 register` shows the exact settings for our pin.
-The first 3 bits `2:0 FUNC` determine the selected funtion of the pin. There are three options of which only two are valid for parts other than `LPC11U37H`:
+The first 3 bits `2:0 FUNC` determine the selected function of the pin. There are three options of which only two are valid for parts other than `LPC11U37H`:
 
 * `0x0: PIO0_7` - use the pin as a GPIO pin, this is what we need/
 * `0x1: C̅T̅S̅` - Clear To Send, which is a UART feature.
@@ -107,4 +107,170 @@ while(1) {
     for (int i = 0; i < 100000; ++i) __asm__("nop");
 }
 ```
+
+Putting all our code inside a function `blinky()` in the main.c file:
+
+```
+void blinky(void)
+{
+
+    // configure PIO_7 pin function
+    (*(volatile unsigned int *)(0x4004401C)) = 0;
+
+    // configure GPIO direction
+    (*(volatile unsigned int *)(0x50002000)) |= (1 << 7);
+
+    while(1) {
+
+        // set LED GPIO low
+        (*(volatile unsigned int *)(0x50002280)) = (1 << 7);
+        for (int i = 0; i < 100000; ++i) __asm__("nop");
+
+        // set LED GPIO high
+        (*(volatile unsigned int *)(0x50002200)) = (1 << 7);
+        for (int i = 0; i < 100000; ++i) __asm__("nop");
+
+    }
+}
+```
+
+Now we can try to compile it with the following command:
+
+```
+arm-none-eabi-gcc -Wall -Wextra -g3 -O0 -MD -mcpu=cortex-m0 -mthumb -c -o main.o main.c
+```
+If everything went Ok, we didn't get any warning or errors and now we have a `main.o` object file in our directory. Unfortunately, we're not quite ready to run this code on our hardware.
+
+We still need to tell the compiler and our microcontroller where to place the code and where to find it. That's where to `link.ld` file we created earlier comes into play.
+
+## Linker File and Interrupt Vector Table
+
+[General intro to linkerfile?]
+
+The linker file basically does two things. Define the available memory, and define what should be put into it.
+
+For this project the minimum viable linker file is as follows
+
+```
+
+MEMORY
+{
+  /* Define each memory region */
+  Flash (rx) : ORIGIN = 0x0, LENGTH = 0x8000 /* 32K bytes */
+  RAM (rwx) : ORIGIN = 0x10000000, LENGTH = 0x0800 /* 2K bytes */
+}
+
+/* Define a symbol for the top of each memory region */
+__top_RAM = 0x10000000 + 0x2000;
+
+/* reset_vector is the entry point of the program */
+ENTRY(blinky)
+
+SECTIONS
+{
+    .text : ALIGN(4)
+    {
+        FILL(0xff)
+        KEEP(*(.interrupt_vector_table))
+         *(.text*)
+
+    } > Flash
+
+
+    /* Pointer to top of the stack */
+    PROVIDE(_vStackTop = __top_RAM - 0);
+
+    /* Calculate the usercode checksum as per the LPC11uxx user manual:
+     * UM10452, chapter 20.7.
+     */
+    PROVIDE(__valid_user_code_checksum = 0 -
+        (_vStackTop
+        + (blinky + 1)
+        + (0)
+        + (0)
+        + (0)
+        + (0)
+        + (0)
+        )
+    );
+}
+
+```
+We can just copy this to `link.ld`.
+
+#### Memory section
+
+The linker file starts with a memory section. This section defines all the memory available, which for the LPC11uxx is Flash and RAM. If we take a look at the memory map in chapter 2.2 of the manual, we see that there is on-chip flash starting at address `0x0000 0000` which has a size of 32 kB on the LPC11u14. Additionally, there is 2kB or RAM located at address `0x1000 0000`.
+
+```
+MEMORY
+{
+  /* Define each memory region */
+  Flash (rx) : ORIGIN = 0x0, LENGTH = 0x8000 /* 32K bytes */
+  RAM (rwx) : ORIGIN = 0x10000000, LENGTH = 0x0800 /* 2K bytes */
+}
+```
+
+#### Sections section
+
+The rest of the linker file, which consists mostly of the `SECTIONS` section, tells the compiler where the code needs to be and where the Interrupt vector table should be.
+
+#### Interrupt Vector Table
+
+Finally we need to add this code to `main.c`. The special compiler attribute `__attribute__ ((section(".interrupt_vector_table")))` makes sure that the following `interrupt_vector_table` struct will be placed at the correct memory address as defined in the linker file.
+This table is defined by the Cortex-M0 architecture. It will always start with the stack pointer followed by the reset interrupt vector. We have pointed the `.reset` to our blinky function so that the microcontroller will start code execution there.
+
+
+```
+// these symbols are defined in the linker script
+extern unsigned int __valid_user_code_checksum;
+extern unsigned int _vStackTop;
+
+// setup the interrupt vector table
+__attribute__ ((section(".interrupt_vector_table")))
+struct {
+    void *stack;
+    void (*reset)(void);
+    void *_unused[5];
+    unsigned int checksum;
+    void *__unused[40];
+} interrupt_vector_table = {
+
+    .stack = &_vStackTop,
+    .reset = blinky,
+    .checksum =  (unsigned int)&__valid_user_code_checksum,
+};
+```
+
+#### Checksum
+
+The checksum is a special LPC feature which is used by the onboard LPC bootloader to determine whether there valid code exists in flash. The linker file calculates the correct value and the interrupt vector table makes sure it is placed at the correct location. See chapter `20.7` of the user manual.
+
+
+# Compile and link and flash
+
+Now we have everything to run our code. Issue the following commands to compile and link our code respectively.
+
+```
+arm-none-eabi-gcc -Wall -Wextra -g3 -O0 -MD -mcpu=cortex-m0 -mthumb -c -o main.o main.c
+arm-none-eabi-gcc -mcpu=cortex-m0 -mthumb -nostartfiles -Wl,-T,link.ld -o blinky.elf main.o -lc -lnosys
+```
+
+After this we should have a `blinky.elf` file. We can flash our code to the board using the Black Magic Probe:
+
+```
+arm-none-eabi-gdb -nx --batch \
+-ex 'target extended-remote /dev/ttyACM0' \
+-ex 'monitor swdp_scan' \
+-ex 'attach 1' \
+-ex 'load' \
+-ex 'set mem inaccessible-by-default off' \
+-ex 'set {int}0x40048000 = 2' \
+-ex 'compare-sections' \
+-ex 'kill' \
+blinky.elf
+```
+
+See [TODO] for more detailed information about flashing your target board.
+
 

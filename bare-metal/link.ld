@@ -2,15 +2,15 @@
 MEMORY
 {
   /* Define each memory region */
-  Flash (rx) : ORIGIN = 0x0, LENGTH = 0xC000 /* 48K bytes */
-  RAM (rwx) : ORIGIN = 0x10000000, LENGTH = 0x2000 /* 8K bytes */
+  Flash (rx) : ORIGIN = 0x0, LENGTH = 0x8000 /* 32K bytes */
+  RAM (rwx) : ORIGIN = 0x10000000, LENGTH = 0x0800 /* 2K bytes */
 }
 
 /* Define a symbol for the top of each memory region */
 __top_RAM = 0x10000000 + 0x2000;
 
 /* reset_vector is the entry point of the program */
-ENTRY(reset_vector)
+ENTRY(blinky)
 
 SECTIONS
 {
@@ -31,7 +31,7 @@ SECTIONS
      */
     PROVIDE(__valid_user_code_checksum = 0 -
         (_vStackTop
-        + (reset_vector + 1)
+        + (blinky + 1)
         + (0)
         + (0)
         + (0)
