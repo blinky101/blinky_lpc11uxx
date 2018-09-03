@@ -6,7 +6,7 @@
 
 - [Arm Embedded Toolchain](https://developer.arm.com/open-source/gnu-toolchain/gnu-rm/downloads)
 - A [Black Magic Probe](https://github.com/blacksphere/blackmagic/wiki)
-- CMake
+- make
 
 Make sure all required software is installed correctly and available in your PATH.
 
@@ -23,6 +23,7 @@ make all
 
 This step flashes the firmware via the [Black Magic Probe](https://github.com/blacksphere/blackmagic/wiki). Flashing via OpenOCD is also possible, but not covered in this documentation.
 
+```
 arm-none-eabi-gdb -nx --batch \
 -ex 'target extended-remote /dev/ttyACM0' \
 -ex 'monitor swdp_scan' \
@@ -71,4 +72,4 @@ Try plugging the black Magic Probe in and out and observing the differences in /
 The bare-metal project is optimized for having minimal dependencies,
 which does make the code a bit confusing to read. Also, a lot of corners were cut
 to keep the dependencies minimal: basing a real project on this code is not recommended.
-Please have a look at the (basic)[/basic/] and (cpm)[/cpm/] projects.
+Please have a look at the [basic](/basic/) and [cpm](/cpm/) projects.
