@@ -17,6 +17,55 @@ The purpose of this guide is to document the steps required to get started on th
 
 * [Gnu Arm Embedded Toolchain](https://developer.arm.com/open-source/gnu-toolchain/gnu-rm/downloads): this is a set of open-source tools including the gcc compiler and gdb debugger, specialized for embedded Arm cortex processors.
 
+
+## Preparation: Setup the Black Magic Probe
+
+### Connecting the wires
+<img src="img/lpcxpresso_with_blackmagic.jpg" alt="LPCXpresso board connected to a Black Magic Probe" width="600">
+
+The way to connect depends on the board. For now, we assume the LPCXpresso board (see picture). This is a development board with a built-in NXP LPC-Link debugger. We are not going to use that here, so we have to make some changes to work with the Black Magic Probe:
+
+1. This board is that it does not have a standard 1-pin jtag connector, so we connect via a [Olimex ARM-JTAG-20-10 adapter](https://www.olimex.com/Products/ARM/JTAG/ARM-JTAG-20-10/) and some breadboard-style wires.
+2. We need to cut/remove the connection from the LPC11uxx side of the board to the NXP LPC-Link side of the board.
+
+
+### Testing via gdb
+
+Depending on your platform, a 'file' in /dev/ is created when you plugin the Black Magic Probe.
+
+The name of this file can change sometimes, but it is relatively easy to find out by plugging the Black Magic Probe in and out and observing the differences.
+
+* Linux: the file will be something like `/dev/ttyACM0`.
+  
+  Depending on the linux distribution, you may need permissions to use the debugger. On Ubuntu, this can be fixed by adding yourself to the `dialout` group:
+  ```
+  sudo adduser <your-username> dialout
+  ```
+* Mac: the file will be formatted like `/dev/cu.usbmodem<serialnumber>`
+
+You can test if the Black Magic Probe correctly detects the board:
+
+```
+arm-none-eabi-gdb -nx --batch \
+-ex 'target extended-remote /dev/ttyACM0' \
+-ex 'monitor swdp_scan'
+```
+This should result in something like this:
+```
+Target voltage: 3.3V
+Available Targets:
+No. Att Driver
+ 1      LPC11xx
+```
+If the command above failed, make sure your target board has power. A nice feature of the Black Magic Probe is that it can provide 3.3V to the target board. So if your board is compatible with 3.3V, try this (note the 'monitor tpwr enable' line):
+```
+arm-none-eabi-gdb -nx --batch \
+-ex 'target extended-remote /dev/ttyACM0' \
+-ex 'monitor tpwr enable' \
+-ex 'monitor swdp_scan'
+```
+
+
 ## Getting started: bare-metal
 
 This repository contains three different blinky projects. The bare-metal project has the least dependencies and is the easiest to get up and running. The downside is that the source code is a bit hard to read, especially if you are not used to embedded c code.
@@ -39,23 +88,7 @@ Remark: you need to install the [Gnu Arm Embedded Toolchain](https://developer.a
 export PATH=$PATH:/folder/where/you/installed/the/toolchain/gcc-arm-none-eabi-7-2017-q4-major/bin/
 ```
 
-#### Connecting the Black Magic Probe
-
-Depending on your platform, a 'file' in /dev/ is created when you plugin the Black Magic Probe.
-
-The name of this file can change sometimes, but it is relatively easy to find out by plugging the Black Magic Probe in and out and observing the differences.
-
-* Linux: the file will be something like `/dev/ttyACM0`.
-  
-  Depending on the linux distribution, you may need permissions to use the debugger. On Ubuntu, this can be fixed by adding yourself to the `dialout` group:
-  ```
-  sudo adduser <your-username> dialout
-  ```
-  
-* Mac: the file will be formatted like `/dev/cu.usbmodem<serialnumber>`
-
-
-The firmware can be flashed using this command, replacing /dev/ttyACM0 with the correct file as explained above:
+The firmware can be flashed using this command, replacing /dev/ttyACM0 with the correct file for your setup:
 ```
 arm-none-eabi-gdb -nx --batch \
 -ex 'target extended-remote /dev/ttyACM0' \
@@ -79,6 +112,7 @@ Kill the program being debugged? (y or n) [answered Y; input not from terminal]
 ```
 If all goes well, you now have succesfully uploaded your first program!
 You should now see a blinking LED (assuming your board has an LED attached to pin PI0_7).
+<img src="img/lpcxpresso_blink.jpg" alt="A blinking led" width="600">
 
 ### Debugging
 
