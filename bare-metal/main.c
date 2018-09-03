@@ -1,27 +1,6 @@
 
-void ResetISR(void);
-
-// see linker script
-extern void __valid_user_code_checksum();
-extern void _vStackTop(void);
-
-extern void(*const g_pfnVectors[]) (void);
-__attribute__ ((section(".isr_vector")))
-void(*const g_pfnVectors[]) (void) = {
-    // Core Level - CM0
-    &_vStackTop,                    // The initial stack pointer
-    ResetISR,						// The reset handler
-    0,                              // Not used
-    0,                              // Not used
-    0,                              // Reserved
-    0,                      	    // Reserved
-    0,                              // Reserved
-    __valid_user_code_checksum,     // Flash checksum (see linker script)
-};
-
-
-__attribute__ ((section(".after_vectors")))
-void ResetISR(void)
+// called when the chip resets
+void reset_vector(void)
 {
 
     // configure PIO_7 pin function
@@ -52,4 +31,24 @@ void ResetISR(void)
 
     }
 }
+
+
+// these symbols are defined in the linker script
+extern unsigned int __valid_user_code_checksum;
+extern unsigned int _vStackTop;
+
+// setup the interrupt vector table
+__attribute__ ((section(".interrupt_vector_table")))
+struct {
+    void *stack;
+    void (*reset)(void);
+    void *_unused[5];
+    unsigned int checksum;
+    void *__unused[40];
+} interrupt_vector_table = {
+
+    .stack = &_vStackTop,
+    .reset = reset_vector,
+    .checksum =  (unsigned int)&__valid_user_code_checksum,
+};
 
