@@ -10,3 +10,6 @@
 # Where to find the Black Magic Probe device
 #set(BLACKMAGIC_DEV /dev/ttyBmpGdb)
 
+# Whether to provide power via debugger while flashing / debugging ("yes" or "no")
+#set(POWER_TARGET "no")
+

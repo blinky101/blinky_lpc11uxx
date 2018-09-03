@@ -39,11 +39,15 @@ set(DEBUG_WATCHPOINT_LIMIT  2)
 # default settings
 set(OPTIMIZE s)
 set(BLACKMAGIC_DEV /dev/ttyBmpGdb)
+set(POWER_TARGET "no")
 
 # Include custom settings
 # (if this file does not exist, copy it from config.cmake.example)
 include(${CMAKE_SOURCE_DIR}/config.cmake)
 
+message(STATUS "Config OPTIMIZE: ${OPTIMIZE}")
+message(STATUS "Config BLACKMAGIC_DEV: ${BLACKMAGIC_DEV}")
+message(STATUS "Config POWER_TARGET: ${POWER_TARGET}")
 
 set(SYSTEM_LIBRARIES    m c gcc)
 
@@ -97,7 +101,7 @@ CPM_AddModule("c_utils"
 
 CPM_AddModule("mcu_debug"
     GIT_REPOSITORY "https://github.com/JitterCompany/mcu_debug.git"
-    GIT_TAG "2.0")
+    GIT_TAG "2.1")
 
 CPM_Finish()
 
