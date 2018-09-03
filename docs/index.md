@@ -21,13 +21,21 @@ The purpose of this guide is to document the steps required to get started on th
 ## Preparation: Setup the Black Magic Probe
 
 ### Connecting the wires
-<img src="img/lpcxpresso_with_blackmagic.jpg" alt="LPCXpresso board connected to a Black Magic Probe" width="600">
+<img src="img/lpcxpresso_with_blackmagic.jpg" alt="LPCXpresso board connected to a Black Magic Probe">
 
 The way to connect depends on the board. For now, we assume the LPCXpresso board (see picture). This is a development board with a built-in NXP LPC-Link debugger. We are not going to use that here, so we have to make some changes to work with the Black Magic Probe:
 
 1. This board is that it does not have a standard 1-pin jtag connector, so we connect via a [Olimex ARM-JTAG-20-10 adapter](https://www.olimex.com/Products/ARM/JTAG/ARM-JTAG-20-10/) and some breadboard-style wires.
+  We chose the following color coding in the pictures:
+  * red: Power (3.3V)
+  * yellow: SWDIO
+  * blue: SWCLK
+  * black: GND
+  
 2. We need to cut/remove the connection from the LPC11uxx side of the board to the NXP LPC-Link side of the board.
+  This is done by cutting or de-soldering the jumper traces along along the green dotted line before soldering the header.
 
+<img src="img/overview_conn.jpg" alt="LPCXpresso board connected to a Black Magic Probe">
 
 ### Testing via gdb
 
