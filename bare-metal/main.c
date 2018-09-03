@@ -4,7 +4,7 @@ void reset_vector(void)
 {
 
     // configure PIO_7 pin function
-    (*(volatile unsigned int *)(0x4004401C)) = (2 << 3);
+    (*(volatile unsigned int *)(0x4004401C)) = 0;
     // configure GPIO direction
     (*(volatile unsigned int *)(0x50002000)) = (1 << 7);
 
