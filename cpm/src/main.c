@@ -8,11 +8,6 @@
 #include <mcu_timing/delay.h>
 
 
-// TODO RM or interrupt -based
-void SysTick_Handler(void)
-{
-
-}
 
 // TODO it would be nice to add clock_set_frequency() support via lpc_tools
 // instead of this hardcoded frequency
@@ -73,9 +68,6 @@ void SystemSetupClocking(void)
 
 int main(void)
 {
-    // TODO: is this required?
-	Chip_Clock_EnablePeriphClock(SYSCTL_CLOCK_GPIO);
-
     board_setup();
     board_setup_NVIC();
     board_setup_pins();
@@ -83,7 +75,6 @@ int main(void)
 	// configure System Clock at 48MHz
 	SystemSetupClocking();
 	SystemCoreClockUpdate();
-	
 
     delay_init();
 

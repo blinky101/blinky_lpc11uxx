@@ -11,12 +11,6 @@
 const uint32_t OscRateIn = 12000000;
 
 
-typedef struct {
-	uint32_t port : 8;			/* Pin port */
-	uint32_t pin : 8;			/* Pin number */
-	uint32_t modefunc : 16;		/* Function and mode */
-} PINMUX_GRP_T;
-
 static const NVICConfig NVIC_config[] = {
     {TIMER_32_0_IRQn,       1},     // delay timer: high priority
 };
