@@ -31,7 +31,7 @@ The way to connect depends on the board. For now, we assume the LPCXpresso board
   * yellow: SWDIO
   * blue: SWCLK
   * black: GND
-  
+
 2. We need to cut/remove the connection from the LPC11uxx side of the board to the NXP LPC-Link side of the board.
   This is done by cutting or de-soldering the jumper traces along along the green dotted line before soldering the header.
 
@@ -44,7 +44,7 @@ Depending on your platform, a 'file' in /dev/ is created when you plugin the Bla
 The name of this file can change sometimes, but it is relatively easy to find out by plugging the Black Magic Probe in and out and observing the differences.
 
 * Linux: the file will be something like `/dev/ttyACM0`.
-  
+
   Depending on the linux distribution, you may need permissions to use the debugger. On Ubuntu, this can be fixed by adding yourself to the `dialout` group:
   ```
   sudo adduser <your-username> dialout
@@ -122,6 +122,14 @@ If all goes well, you now have succesfully uploaded your first program!
 You should now see a blinking LED (assuming your board has an LED attached to pin PI0_7).
 <img src="img/lpcxpresso_blink.jpg" alt="A blinking led" width="600">
 
+
+## Tutorials
+
+Build your own blinky project from scratch and understand what is happening with the help of our tutorial.
+
+[Part 1: bare-metal blinky](./tutorial_part1)
+
+<!--
 ### Debugging
 
 The Black Magic Probe is not just for flashing the firmware, you can also step through the code:
@@ -139,5 +147,5 @@ This should drop you in a gdb console, showing the code that is currently execut
 * Ctrl-C (halts the program: the LED stops blinking)
 * ... and many more, see the gdb documentation
 
-This can be very helpful to find bugs in your code, or to verify that the program is indeed running (in case your board does not have an LED to blink).
+This can be very helpful to find bugs in your code, or to verify that the program is indeed running (in case your board does not have an LED to blink). -->
 
