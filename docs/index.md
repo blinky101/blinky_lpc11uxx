@@ -2,7 +2,7 @@
 
 <img src="img/lpc11uxx.jpg" alt="LPC11uxx microcontroller chip" width="200">
 
-The LPC11uxx microcontrollers are entry-level 32 bit cortex-m0 microcontrollers with integrated support for USB. A 32-bit cortex-M0 clocked at up to 50MHz is a nice step up from the traditional 8-bit microcontrollers, but as an entry-level chip it is still very accessible for beginners: it is low cost and there are not too many peripherals to setup.
+The LPC11uxx microcontrollers are entry-level 32 bit cortex-m0 microcontrollers with integrated support for USB. A 32-bit cortex-M0 clocked at up to 50MHz is a nice step up from the traditional 8-bit and 16-bit microcontrollers, but as an entry-level chip it is still very accessible for beginners: it is low cost and there are not too many peripherals to setup.
 
 The purpose of this guide is to document the steps required to get started on this platform from scratch, using just a few open-source tools.
 
@@ -25,7 +25,7 @@ The purpose of this guide is to document the steps required to get started on th
 
 The way to connect depends on the board. For now, we assume the LPCXpresso board (see picture). This is a development board with a built-in NXP LPC-Link debugger. We are not going to use that here, so we have to make some changes to work with the Black Magic Probe:
 
-1. This board is that it does not have a standard 1-pin jtag connector, so we connect via a [Olimex ARM-JTAG-20-10 adapter](https://www.olimex.com/Products/ARM/JTAG/ARM-JTAG-20-10/) and some breadboard-style wires.
+1. This board does not have a standard 10-pin jtag connector, so we connect via a [Olimex ARM-JTAG-20-10 adapter](https://www.olimex.com/Products/ARM/JTAG/ARM-JTAG-20-10/) and some jumper wires.
   We chose the following color coding in the pictures:
   * red: Power (3.3V)
   * yellow: SWDIO
