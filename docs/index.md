@@ -35,7 +35,7 @@ The way to connect depends on the board. For now, we assume the LPCXpresso board
 2. We need to cut/remove the connection from the LPC11uxx side of the board to the NXP LPC-Link side of the board.
   This is done by cutting or de-soldering the jumper traces along along the green dotted line before soldering the header.
 
-<img src="img/overview_conn.jpg" alt="LPCXpresso board connected to a Black Magic Probe">
+<img src="img/lpcxpresso_connections.jpg" alt="LPCXpresso board connected to a Black Magic Probe">
 
 ### Testing via gdb
 
