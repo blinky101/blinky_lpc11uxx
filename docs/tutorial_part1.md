@@ -266,4 +266,8 @@ blinky.elf
 
 <!--  See [TODO] for more detailed information about flashing your target board. -->
 
+<div class="tutorial_nav">
+  <a class="left" href="./getting_started">◀ Getting Started</a>
+  <a class="right" href="./tutorial_part2">Tutorial Part 2 ▶</a>
+</div>
 
