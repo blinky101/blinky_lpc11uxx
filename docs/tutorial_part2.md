@@ -57,7 +57,7 @@ C is considered a low-level language by most people, but even c needs some speci
   ```
  This tells the compiler that all data (that is, global variables that are explicitly initialized) will be in RAM, but must also be in flash memory. The idea is that the variables from flash must be copied to RAM before the program starts. Try and run the program again: it should now work.
  
- While adding that section to the linker script appears to fix the program, but we still have a missing link: how are the global variables in RAM initialized? The answer is that we need to do this ourselves at the begin of our program. We don't do that yet, which can be demonstrated by the following changes:
+ While adding that section to the linker script appears to fix the program, we still have a missing link: how are the global variables in RAM initialized? The answer is that we need to do this ourselves at the begin of our program. We don't do that yet, which can be demonstrated by the following changes:
  
  1. initialize blink_time to a high value (5 milion in this example)
  ```
@@ -77,11 +77,20 @@ Normally, this code should result in a (very) slow blinking led, which starts to
 
 You could say there are three kinds of global variables in c:
 * constants: they are stored in flash and can never change.
-    Example: `const int foo = 3;`
+    Example:
+    ```
+    const int foo = 3;
+    ````
 * data: They are in RAM, but must be initialized from flash.
-    Example: `int foo = 3; // may be changed later by the program`
+    Example:
+    ```
+    int foo = 3; // may be changed later by the program
+    ```
 * bss: they are in RAM, but we should initialze them to zero.
-    Example: `int foo; // according to the c standard, should be 0`
+    Example:
+    ```
+    int foo; // according to the c standard, should be 0
+    ```
 
 To get `.data` and `.bss` to work, we must first ensure they are in the linker script. Change the linker script so it includes these sections:
 ```
