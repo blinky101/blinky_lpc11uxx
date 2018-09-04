@@ -1,8 +1,9 @@
-## Getting Started
+# Getting Started
 
-### Connecting the wires
+This guide helps you setup and test your development board and tools.
+
+## Connecting the wires
 <img src="img/lpcxpresso_connections.jpg" alt="LPCXpresso board connected to a Black Magic Probe">
-
 
 
 The way to connect depends on the board. For now, we assume the LPCXpresso board (see picture). This is a development board with a built-in NXP LPC-Link debugger. We are not going to use that here, so we have to make some changes to work with the Black Magic Probe:
@@ -20,7 +21,7 @@ The following color coding is used in the pictures:
 
 <img src="img/lpcxpresso_with_blackmagic.jpg" alt="LPCXpresso board connected to a Black Magic Probe">
 
-### Testing Your Setup
+## Testing Your Setup
 
 Depending on your platform, a 'file' in /dev/ is created when you plugin the Black Magic Probe.
 
@@ -57,7 +58,7 @@ arm-none-eabi-gdb -nx --batch \
 ```
 
 
-### Blinking the LED
+## Blinking the LED
 
 Download the [pre-compiled blinky program *blinky.elf*](https://github.com/blinky101/blinky_lpc11uxx/tree/master/bare-metal/blinky.elf) (or you can [clone](https://github.com/blinky101/blinky_lpc11uxx) the repository and build it yourself)
 
