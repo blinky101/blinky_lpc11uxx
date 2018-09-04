@@ -45,18 +45,18 @@ Remember, our goal, and our only goal is to blink the LED on pin 0_7. Toggeling 
 We will need information from the [manual (UM10462)](https://www.nxp.com/docs/en/user-guide/UM10462.pdf). In `Chapter 7 I/O Configuration` we can find the relevant information. More specifically section `7.4.1.8 PIO0_7 register` shows the exact settings for our pin.
 The first 3 bits `2:0 FUNC` determine the selected function of the pin. There are three options of which only two are valid for parts other than `LPC11U37H`:
 
-* `0x0: PIO0_7` - use the pin as a GPIO pin, this is what we need/
+* `0x0: PIO0_7` - use the pin as a GPIO pin, this is what we need.
 * `0x1: C̅T̅S̅` - Clear To Send, which is a UART feature.
 * `0x2: IOH_5` - (only available on LPC11U37H)
 
-The other fields of this register we can ignore for now. So that means that we need to write `0b00` to the first 2 bits of the register. The manual shows that the `PIO0_7 register` is located at memory address `0x4004 401C`.
+The other fields of this register we can ignore for now. Because we want the pin to be a GPIO pin, we need to write `0b00` to the first 2 bits of the register. The manual shows that the `PIO0_7 register` is located at memory address `0x4004 401C`.
 This results in our first line of c code:
 
 ```
 // configure PIO_7 pin function
 (*(volatile unsigned int *)(0x4004401C)) = 0;
 ```
-What this does is, first we cast the address to an *int pointer*: `(volatile unsigned int *)(0x4004401C)`, then we dereference it and write a zero to that place in memory that happens to be a specific register.
+What this does: First we cast the address to an *int pointer*: `(volatile unsigned int *)(0x4004401C)`. Then we dereference it and write a zero to the memory location `0x4004 401C` (which is not actually memory: it is a specific IO configuration register, which is memory-mapped at that address).
 
 *Note that it is not very good practice to write (anything) to reserved register values, since it can have unintended side effects, but in this case it is harmless. The better way is to first read the value, then only set or clear the bits you want to change and then write the value back.*
 
@@ -142,7 +142,7 @@ We still need to tell the compiler and our microcontroller where to place the co
 
 The linker file basically does two things. Define the available memory, and define what should be put into it.
 
-For this project the minimum viable linker file is as follows
+For this project, the minimum viable linker file is as follows
 
 ```
 
@@ -237,7 +237,7 @@ struct {
 
 #### Checksum
 
-The checksum is a special LPC feature which is used by the onboard LPC bootloader to determine whether there valid code exists in flash. The linker file calculates the correct value and the interrupt vector table makes sure it is placed at the correct location. See chapter `20.7` of the user manual.
+The checksum is a special LPC feature which is used by the onboard LPC bootloader to determine whether a valid program exists in flash memory: if the checksum does not match, the bootloader will refuse to start our program. The linker file calculates the correct value and the interrupt vector table makes sure it is placed at the correct location. See chapter `20.7` of the user manual.
 
 
 # Compile and link and flash
