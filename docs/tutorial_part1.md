@@ -1,3 +1,7 @@
+---
+title: Tutorial Part 1
+---
+
 # Tutorial blinky lpc11uxx
 
 This tutorials shows you how to create a blinky project for the lpc11u14 microcontroller from scratch without any software dependencies.
