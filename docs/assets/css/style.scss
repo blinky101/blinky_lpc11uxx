@@ -3,9 +3,26 @@
 
 @import "{{ site.theme }}";
 
+$primary-color: #4484CE;
+$secondary-color: #274B75;
+$secondary-color-dark: #19304c;
+$accent-color: #ffb21a;
+
+header {
+  background: $primary-color;
+}
+
+body {
+  background: url(../images/body-background-bw.png) #e6e6e6
+}
+
 #banner {
+  background: $secondary-color;
+  border-color: $secondary-color-dark;
+
+  color: white;
   ul {
-    margin-left: 0;    
+    margin-left: 0;
   }
 }
 
@@ -20,14 +37,15 @@
   margin-top: 8px;
   line-height: 14px;
   font-size: 14px;
-  color: #333;
+  color: white;
   font-weight: bold;
   display: inline-block;
   text-align: center;
 }
 
 .breadcrumb-sep {
-  margin: 0 4px; 
+  margin: 0 4px;
+  color: rgba(white, 0.8);
 }
 
 .left {
@@ -47,5 +65,5 @@
     position:fixed;
     left:20px;
   }
-  
+
 }
