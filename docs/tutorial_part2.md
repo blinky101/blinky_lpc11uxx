@@ -55,7 +55,7 @@ C is considered a low-level language by most people, but even c needs some speci
    _edata = . ;
 } > RAM AT>Flash
   ```
- This tells the compiler that all data (that is, global variables that are explicitly initialized) will be in RAM, but must also be in flash memory. The idea is that the variables from flash must be copied to RAM before the program starts. Try and run the program again: it should now work.
+ This tells the linker that all data (that is, global variables that are explicitly initialized) will be in RAM, but must also be in flash memory. The idea is that the variables from flash must be copied to RAM before the program starts. Try and run the program again: it should now work.
  
  While adding that section to the linker script appears to fix the program, we still have a missing link: how are the global variables in RAM initialized? The answer is that we need to do this ourselves at the begin of our program. We don't do that yet, which can be demonstrated by the following changes:
  
