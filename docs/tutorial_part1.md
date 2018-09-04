@@ -240,7 +240,7 @@ struct {
 The checksum is a special LPC feature which is used by the onboard LPC bootloader to determine whether a valid program exists in flash memory: if the checksum does not match, the bootloader will refuse to start our program. The linker file calculates the correct value and the interrupt vector table makes sure it is placed at the correct location. See chapter `20.7` of the user manual.
 
 
-# Compile and link and flash
+## Compile and link and flash
 
 Now we have everything to run our code. Issue the following commands to compile and link our code respectively.
 
@@ -265,6 +265,9 @@ blinky.elf
 ```
 
 <!--  See [TODO] for more detailed information about flashing your target board. -->
+
+> The completed project is available in [the repository](https://github.com/blinky101/blinky_lpc11uxx/tree/master/bare-metal/).
+
 
 <div class="tutorial_nav">
   <a class="left" href="./getting_started">◀ Getting Started</a>
