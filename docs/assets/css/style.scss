@@ -1,0 +1,23 @@
+---
+---
+
+@import "{{ site.theme }}";
+
+.breadcrumb {
+  position: fixed;
+  left: 50%;
+  margin-left: 325px;
+}
+
+
+@media print, screen and (max-width: 720px) {
+
+  .breadcrumb {
+    float: left;
+    display: inline-block;
+    margin-left: 0px;
+    position:fixed;
+    left:20px;
+  }
+  
+}
