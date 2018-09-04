@@ -94,6 +94,10 @@ If all goes well, you have succesfully uploaded your first program!
 You should now see a blinking LED (assuming your board has an LED attached to pin PI0_7).
 <img src="img/lpcxpresso_blink.jpg" alt="A blinking led" width="600">
 
+<div class="tutorial_nav">
+  <a class="left" href="./">Blinky LPC11uxx</a>
+  <a class="right" href="./tutorial_part1">Tutorial Part 1 ➤</a>
+</div>
 
 
 
