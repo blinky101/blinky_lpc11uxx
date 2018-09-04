@@ -3,6 +3,12 @@
 
 @import "{{ site.theme }}";
 
+#banner {
+  ul {
+    margin-left: 0;    
+  }
+}
+
 .breadcrumb {
   position: fixed;
   left: 50%;
@@ -10,14 +16,8 @@
 }
 
 .breadcrumb-section {
-  border: 1px solid #dba500;
-  background: linear_gradient(#ffe788, #ffce38);
-  border-radius: 2px;
-  box-shadow: inset 0px 1px 0px rgba(255,255,255,0.4),0px 1px 1px rgba(0,0,0,0.1);
-  background-color: #FFE788;
-  margin-left: 5px;
   padding: 10px 12px;
-  margin-top: 6px;
+  margin-top: 8px;
   line-height: 14px;
   font-size: 14px;
   color: #333;
@@ -27,7 +27,7 @@
 }
 
 .breadcrumb-sep {
-  margin: 0 8px; 
+  margin: 0 4px; 
 }
 
 
