@@ -23,7 +23,17 @@
 
       <div id="banner">
         <span id="logo"></span>
-        <a href="https://blinky101.github.io" class="button fork"><strong>Blinky 101</strong></a>
+<!--         <a href="https://blinky101.github.io" class="button fork"><strong>Blinky 101</strong></a> -->
+        <div class="downloads">
+            <span>Downloads:</span>
+            <ul>
+              <li><a href="https://blinky101.github.io" class="button">Blinky101</a></li>
+              <li><a href="{{https://blinky101.github.io}}/{{site.github.repository_name}}" class="button">{{site.title}}</a></li>
+              {% if page.title %}
+              <li><a class="button">{{page.title}}</a></li>
+              {% endif %}
+            </ul>
+          </div>
 <!--         <a href="{{ site.github.repository_url }}" class="button fork"><strong>View On GitHub</strong></a> -->
         {% if site.show_downloads %}
           <div class="downloads">
