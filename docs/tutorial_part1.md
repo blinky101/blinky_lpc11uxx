@@ -266,7 +266,7 @@ blinky.elf
 
 <!--  See [TODO] for more detailed information about flashing your target board. -->
 
-> The completed project is available in [the repository](https://github.com/blinky101/blinky_lpc11uxx/tree/master/bare-metal/).
+> **Note: The completed project can be downloaded from the [blinky_lpc11uxx repository](https://github.com/blinky101/blinky_lpc11uxx/tree/master/bare-metal/).**
 
 
 <div class="tutorial_nav">
