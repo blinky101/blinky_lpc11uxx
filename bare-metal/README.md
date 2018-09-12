@@ -67,6 +67,14 @@ This should drop you into a gdb console.
 
 Try plugging the black Magic Probe in and out and observing the differences in /dev/. On linux, /dev/ttyACM0 or similar is expected, on MacOS it will look like /dev/cu.<serial_number>.
 
+### I want to power the target board via the Black Magic Probe
+
+The official Black Magic Probe has this capability, but it is disabled by default.
+If your board is 3.3V compatible, run this command to enable the power:
+```
+arm-none-eabi-gdb -nx --batch -ex 'target extended-remote /dev/ttyACM0' -ex 'monitor tpwr enable'
+```
+
 ### How does the code work?
 
 The bare-metal project is optimized for having minimal dependencies,
