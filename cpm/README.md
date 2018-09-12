@@ -15,6 +15,9 @@ Make sure all required software is installed correctly and available in your PAT
 Clone the project, and go to the project folder (the folder containing CMakeLists.txt).
 Inside this folder, create a build folder and build the firmware:
 ```
+cp config.cmake.example config.cmake
+# review the settings in config.cmake
+
 mkdir build
 cd build
 cmake ..
