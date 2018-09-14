@@ -26,3 +26,9 @@ Build your own blinky project from scratch and understand what is happening with
 * [Part 1: Bare-metal Blinky](./tutorial_part1)
 * [Part 2: Basic Blinky](./tutorial_part2)
 * [Part 3: CPM Blinky](./tutorial_part3)
+
+## Repository
+
+Each part of the tutorials result in a working blinky project. All projects (and also this website itself) can be found in the [blinky_lpc11uxx repository](https://github.com/blinky101/blinky_lpc11uxx).
+If you see room for improvement on the code or tutorials, feel free to contribute on [Github](https://github.com/blinky101).
+
