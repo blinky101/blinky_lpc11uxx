@@ -151,7 +151,7 @@ In a more complex setup you could add another entry to these tables to define a 
 
 ## Getting globals to work: Startup Code
 
-Because setting up the data section is one of the first things to do at startup, we will call in the *startup code*.
+Because setting up the data section is one of the first things to do at startup, we will call it the *startup code*.
 To initialize the data section, we write a simple function to copy data from flash to RAM (The `i+=4` part is because len will be supplied in bytes, while the pointers are 32-bit = 4 bytes in size):
 
 ```
