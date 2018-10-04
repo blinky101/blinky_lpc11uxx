@@ -54,6 +54,7 @@ No. Att Driver
  1      LPC11xx
 ```
 If the command above failed, make sure your target board has power. A nice feature of the official Black Magic Probe is that it can provide 3.3V to the target board. So if your board is compatible with 3.3V, try this (note the 'monitor tpwr enable' line):
+**NOTE: When enabling power-via-jtag, make sure your board is 3.3V compatible and is not powered by another supply (e.g. via USB cable)**
 ```
 arm-none-eabi-gdb -nx --batch \
 -ex 'target extended-remote /dev/ttyACM0' \
