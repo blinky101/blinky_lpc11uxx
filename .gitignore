@@ -6,3 +6,4 @@ config.cmake
 *.o
 basic/*.bin
 basic/*.elf
+.DS_Store
