@@ -150,7 +150,7 @@ U 1 1 5B895E78
 P 6050 4850
 F 0 "Y1" V 6004 4981 50  0000 L CNN
 F 1 "Crystal" V 6095 4981 50  0000 L CNN
-F 2 "Crystal:Crystal_SMD_TXC_7A-2Pin_5.0x3.2mm" H 6050 4850 50  0001 C CNN
+F 2 "Jitter_Footprints:Crystal_SMD_TXC_7A-2Pin_5.0x3.2mm" H 6050 4850 50  0001 C CNN
 F 3 "~" H 6050 4850 50  0001 C CNN
 	1    6050 4850
 	0    1    1    0   
@@ -312,7 +312,6 @@ F 3 "" H 7650 1400 50  0001 C CNN
 	1    7650 1200
 	1    0    0    -1  
 $EndComp
-NoConn ~ 7450 1200
 Wire Wire Line
 	7450 1200 7300 1200
 Text Label 6750 1200 0    50   ~ 0
@@ -620,4 +619,45 @@ F 3 "" H 8400 4350 50  0001 C CNN
 	1    8400 4350
 	-1   0    0    -1  
 $EndComp
+Wire Wire Line
+	9400 3200 9300 3200
+Connection ~ 9300 3200
+NoConn ~ 8800 2800
+NoConn ~ 8800 2700
+NoConn ~ 9450 5650
+NoConn ~ 3850 2250
+NoConn ~ 3850 2350
+NoConn ~ 3850 2550
+NoConn ~ 3850 2650
+NoConn ~ 3850 2750
+NoConn ~ 3850 2950
+NoConn ~ 3850 3050
+NoConn ~ 3850 3250
+NoConn ~ 3850 3350
+NoConn ~ 3850 3450
+NoConn ~ 3850 3550
+NoConn ~ 3850 3750
+NoConn ~ 3850 3850
+NoConn ~ 3850 3950
+NoConn ~ 3850 4050
+NoConn ~ 3850 4150
+NoConn ~ 3850 4250
+NoConn ~ 3850 4350
+NoConn ~ 3850 4450
+NoConn ~ 5250 2150
+NoConn ~ 5250 2250
+NoConn ~ 5250 2350
+NoConn ~ 5250 2450
+NoConn ~ 5250 2550
+NoConn ~ 5250 2650
+NoConn ~ 5250 2750
+NoConn ~ 5250 2850
+NoConn ~ 5250 2950
+NoConn ~ 5250 3050
+NoConn ~ 5250 3150
+NoConn ~ 5250 3250
+NoConn ~ 5250 3350
+NoConn ~ 5250 3450
+NoConn ~ 5250 3550
+NoConn ~ 5250 3650
 $EndSCHEMATC
