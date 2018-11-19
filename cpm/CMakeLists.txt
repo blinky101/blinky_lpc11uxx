@@ -61,17 +61,17 @@ set(FLASH_FILE          ${PROJECT_BINARY_DIR}/flash.cfg)
 # CPM Modules
 #------------------------------------------------------------------------------
 
-CPM_AddModule("startup_lpc11uxx"
-    GIT_REPOSITORY "https://github.com/JitterCompany/startup_lpc11uxx.git"
-    GIT_TAG "1.1")
+CPM_AddModule("startup_lpc11xxx"
+    GIT_REPOSITORY "https://github.com/JitterCompany/startup_lpc11xxx.git"
+    GIT_TAG "1.2")
 
 CPM_AddModule("lpc_tools"
     GIT_REPOSITORY "https://github.com/JitterCompany/lpc_tools.git"
     GIT_TAG "2.6.1")
 
-CPM_AddModule("chip_lpc11uxx"
-    GIT_REPOSITORY "https://github.com/JitterCompany/chip_lpc11uxx.git"
-    GIT_TAG "1.1")
+CPM_AddModule("chip_lpc11xxx"
+    GIT_REPOSITORY "https://github.com/JitterCompany/chip_lpc11xxx.git"
+    GIT_TAG "1.3")
 
 CPM_AddModule("mcu_timing"
     GIT_REPOSITORY "https://github.com/JitterCompany/mcu_timing.git"
@@ -101,7 +101,7 @@ ${LINKER_FILES} ${FLAGS_M0}")
 #-----------------------------------------------------------------------
 
 
-file(GLOB SOURCES 
+file(GLOB SOURCES
 "src/*.c"
 )
 
