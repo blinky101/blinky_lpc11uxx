@@ -49,7 +49,7 @@
             "request": "launch",
             "servertype": "bmp",
             "cwd": "${workspaceRoot}",
-            "executable": "${workspaceRoot}/bare-metal/blinky.elf",
+            "executable": "${workspaceRoot}/basic/blinky.elf",
             "svdFile": "${workspaceRoot}/LPC11Uxx_v7.svd",
             "name": "Basic (Black Magic Probe)",
             "device": "LPC11U14",
