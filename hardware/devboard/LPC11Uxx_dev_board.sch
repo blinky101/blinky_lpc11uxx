@@ -901,9 +901,9 @@ L Device:D D3
 U 1 1 5C85595B
 P 2050 5800
 F 0 "D3" H 2150 5650 50  0000 C CNN
-F 1 "D" H 2050 5650 50  0000 C CNN
+F 1 "NRVTS245ESF" H 2050 5650 50  0000 C CNN
 F 2 "Diode_SMD:D_SOD-123F" H 2050 5800 50  0001 C CNN
-F 3 "~" H 2050 5800 50  0001 C CNN
+F 3 "http://www.farnell.com/datasheets/1900855.pdf" H 2050 5800 50  0001 C CNN
 	1    2050 5800
 	1    0    0    -1  
 $EndComp
@@ -1023,8 +1023,6 @@ Wire Wire Line
 Connection ~ 2000 2950
 Wire Wire Line
 	2000 2950 2100 2950
-Text Notes 1900 6100 0    50   ~ 0
-TODO: Pick diode
 Wire Wire Line
 	1150 3900 1150 4000
 Connection ~ 1150 4000
