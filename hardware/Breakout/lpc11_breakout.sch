@@ -1,6 +1,5 @@
 EESchema Schematic File Version 4
-LIBS:LPC11Uxx_blinky_board-cache
-EELAYER 26 0
+EELAYER 29 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
@@ -131,10 +130,10 @@ Wire Wire Line
 	2700 3200 2250 3200
 Text Label 2250 3200 0    50   ~ 0
 SWCLK_29
-Text Label 2250 3700 0    50   ~ 0
-SWDIO_35
+Text Label 2600 3700 0    50   ~ 0
+35
 Wire Wire Line
-	2250 3700 2700 3700
+	2600 3700 2700 3700
 Text Label 2250 2200 0    50   ~ 0
 RESET
 Wire Wire Line
@@ -181,7 +180,7 @@ F 3 "" H 7000 1700 50  0001 C CNN
 	-1   0    0    -1  
 $EndComp
 Text Label 7400 1500 2    50   ~ 0
-SWDIO_35
+SWDIO_39
 Text Label 7400 1600 2    50   ~ 0
 SWCLK_29
 $Comp
@@ -542,8 +541,6 @@ Wire Wire Line
 Wire Wire Line
 	2600 3600 2700 3600
 Wire Wire Line
-	2700 3800 2600 3800
-Wire Wire Line
 	2600 3900 2700 3900
 Wire Wire Line
 	2700 4000 2600 4000
@@ -663,18 +660,14 @@ Text Label 8950 5150 0    50   ~ 0
 33
 Text Label 8950 5250 0    50   ~ 0
 34
-Text Label 8800 5350 0    50   ~ 0
-SWDIO_35
+Text Label 8950 5350 0    50   ~ 0
+35
 Text Label 8950 5450 0    50   ~ 0
 36
 Text Label 7750 5300 0    50   ~ 0
 37
 Text Label 7750 5400 0    50   ~ 0
 38
-Text Label 2600 3800 0    50   ~ 0
-39
-Text Label 7750 5500 0    50   ~ 0
-39
 Text Label 7750 5600 0    50   ~ 0
 40
 Wire Wire Line
@@ -694,7 +687,7 @@ Wire Wire Line
 Wire Wire Line
 	8000 5400 7750 5400
 Wire Wire Line
-	7750 5500 8000 5500
+	7500 5500 8000 5500
 Wire Wire Line
 	8000 5600 7750 5600
 Text Label 7750 5700 0    50   ~ 0
@@ -942,7 +935,7 @@ Connection ~ 8500 6200
 Wire Wire Line
 	8500 6200 8500 6100
 Wire Wire Line
-	8800 5350 9200 5350
+	8950 5350 9200 5350
 Text Label 9150 3550 2    50   ~ 0
 SWCLK_29
 Wire Wire Line
@@ -967,4 +960,10 @@ F 3 "" H 9700 3850 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Connection ~ 9700 3850
+Wire Wire Line
+	2250 3800 2700 3800
+Text Label 2250 3800 0    50   ~ 0
+SWDIO_39
+Text Label 7500 5500 0    50   ~ 0
+SWDIO_39
 $EndSCHEMATC
